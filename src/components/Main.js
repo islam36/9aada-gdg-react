@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoList from './TodoList';
 import './Main.css'
 
@@ -22,6 +22,23 @@ export default function Main() {
         setText('');
     }
 
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/todos')
+        .then((response) => {
+            return response.json();
+        })
+        .then((json) => {
+            const data = json.slice(0, 4).map((item) => {
+                return {
+                    id: item.id,
+                    content: item.title
+                }
+            });
+
+            setTodos(data);
+        })
+    }, []);
+    
     return (
         <div className="main">
             <h1 className="title">TODO app</h1>

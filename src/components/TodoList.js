@@ -5,7 +5,6 @@ export default function TodoList({ todos, setTodos }) {
 
     function handleDelete(id) {
         const newTodos = todos.filter((todo) => todo.id !== id);
-        console.log(newTodos);
         setTodos(newTodos);
     }
 

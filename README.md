@@ -14,6 +14,12 @@
 - css
 - js
 
+
+# installation
+```bash
+$ npx create-react-app my-app
+```
+
 # introducing JSX
 extended JavaScript. It allows us to write html code in JS. example:
 ```js
@@ -312,6 +318,34 @@ function Input() {
     );
 }
 ```
+
+
+# Side Effects
+- when we need to perform side effects like fetching data from a server, we use "useEffect" hook.
+- useEffect accepts a callback function that will be executed just after the component has been mounted.
+- it also accepts an array of dependancies, when the dependancies change, the callback will executed
+- the callback function can return a cleanup function that will executed just after unmounting (deleting) the component.
+
+```js
+function UsersList() {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        const data = getDataFromServer();
+        setUsers(data);
+    });
+
+    return (
+        {
+            users.map((user) => (
+                <User key={user.id} user={user} />
+            ))
+        }
+    );
+}
+```
+
+![useEffect explained](https://dmitripavlutin.com/dbe428bafd5308bb2744d7c315c81d9a/react-useeffect-callback-cleanup-3.svg)
 
 
 # ressources
